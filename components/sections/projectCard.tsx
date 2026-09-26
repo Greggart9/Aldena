@@ -51,7 +51,7 @@ const projects: ProjectCardProps[] = [
     description: 'A bold, honest identity for a roaster obsessed with origin and craft.',
     year: 2025,
   },
-    {
+  {
     backgroundImage: '/assets/asset48.png',
     image: '/assets/asset46.png',
     href: '/projects/fern-field',
@@ -182,16 +182,16 @@ export default function EditorialProjectCard({
   };
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative w-full min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center perspective-[1000px]"
     >
       {/* Background Layer with Grain Component Style */}
       <div className="absolute inset-0 -z-10 opacity-30">
         <div className="absolute inset-0 z-10" />
-        <Image 
-          src={backgroundImage} 
-          alt={`${title} background`} 
+        <Image
+          src={backgroundImage}
+          alt={`${title} background`}
           fill
           sizes="100vw"
           className="object-cover contrast-100"
@@ -210,9 +210,9 @@ export default function EditorialProjectCard({
         </div>
       </div>
 
-        {/* Main Wrapper Div */}
+      {/* Main Wrapper Div */}
       <div className="sticky  w-full max-w-5xl px-4 flex flex-col items-center">
-        <Link 
+        <Link
           href={href}
           className="relative block w-full"
         >
@@ -222,11 +222,10 @@ export default function EditorialProjectCard({
             onMouseLeave={() => !isTouchDevice && setIsHovered(false)}
             onMouseMove={handleMouseMove}
             animate={isTouchDevice ? {} : { width: isHovered ? 1000 : 470 }}
-            className={`relative mx-auto flex-none overflow-hidden ${
-              isTouchDevice
+            className={`relative mx-auto flex-none overflow-hidden ${isTouchDevice
                 ? 'w-full max-w-[600px] h-[340px] sm:h-[420px]'
                 : `h-[490px] ${isHovered ? 'cursor-none' : 'cursor-auto'}`
-            }`}
+              }`}
             transition={{
               duration: 1.2,
               ease: [0.16, 1, 0.3, 1],
@@ -234,8 +233,8 @@ export default function EditorialProjectCard({
             style={{ transformStyle: 'preserve-3d' }}
           >
             {/* Image Inside the Expanding Div */}
-            <Image 
-              src={image} 
+            <Image
+              src={image}
               alt={title}
               fill
               sizes="(max-width: 1024px) calc(100vw - 2rem), 1000px"
@@ -271,9 +270,8 @@ export default function EditorialProjectCard({
             duration: 1.2,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className={`mt-4 flex items-end justify-between px-2 text-white ${
-            isTouchDevice ? 'w-full max-w-[600px]' : ''
-          }`}
+          className={`mt-4 flex items-end justify-between px-2 text-white ${isTouchDevice ? 'w-full max-w-[600px]' : ''
+            }`}
         >
           {/* Bottom Left: Title & Body */}
           <div className="max-w-[60%]">
