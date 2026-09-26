@@ -37,7 +37,7 @@ export default function FuturisticNavbar() {
     { name: "ABOUT", href: "/about" },
     { name: "PROJECTS", href: "/projects" },
     { name: "CONTACT", href: "/contact" },
-    { name: "RESUME", href: "/resume" },
+    // { name: "RESUME", href: "/resume" },
   ];
 
   return (
