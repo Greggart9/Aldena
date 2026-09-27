@@ -50,7 +50,7 @@ const faqs: FAQItem[] = [
 ];
 
 export default function FAQSection({
-  imageSrc = '/assets/faq-image.png',
+  imageSrc = '/assets/faq-image.webp',
   imageAlt = 'Workspace',
   contactHref = '#contact',
 }: FAQSectionProps) {

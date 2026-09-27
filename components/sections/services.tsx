@@ -25,8 +25,8 @@ const services: Service[] = [
       'A complete visual identity built from strategy up — logo suite, type and color systems, and a flexible design language. We deliver a brand that stays recognizable everywhere while giving each touchpoint room to breathe. Includes a full guidelines document so your team can apply it with confidence.',
     price: '$6,000',
     serviceNumber: 'SERVICE 01',
-    bgImage: '/assets/asset08.png',
-    hoverImage: '/assets/asset10.png',
+    bgImage: '/assets/asset08.webp',
+    hoverImage: '/assets/asset10.webp',
   },
   {
     category: 'WHAT WE OFFER',
@@ -35,8 +35,8 @@ const services: Service[] = [
       'Design work that turns your brand into real, usable assets — packaging, web layouts, social templates, and marketing collateral. We keep every piece coherent so your brand feels considered at every scale. Ideal for studios who have an identity and need it brought to life.',
     price: '$3,500',
     serviceNumber: 'SERVICE 02',
-    bgImage: '/assets/asset09.png',
-    hoverImage: '/assets/asset11.png',
+    bgImage: '/assets/asset09.webp',
+    hoverImage: '/assets/asset11.webp',
   },
   {
     category: 'WHAT WE OFFER',
@@ -45,8 +45,8 @@ const services: Service[] = [
       'An editorial voice and content strategy that make your brand sound as intentional as it looks. We define tone guidelines, shape your key messaging, and set up a publishing rhythm your team can sustain. Great for brands with strong visuals but no words to match.',
     price: '$2,500',
     serviceNumber: 'SERVICE 03',
-    bgImage: '/assets/asset12.png',
-    hoverImage: '/assets/asset14.png',
+    bgImage: '/assets/asset12.webp',
+    hoverImage: '/assets/asset14.webp',
   },
   {
     category: 'WHAT WE OFFER',
@@ -55,8 +55,8 @@ const services: Service[] = [
       "A focused evolution for brands that are close but not quite there — sharpening your identity, tightening the system, and modernizing without losing what people already recognize. We audit what's working, then refine the rest. A lower-commitment path to a brand that feels current.",
     price: '$4,000',
     serviceNumber: 'SERVICE 04',
-    bgImage: '/assets/asset13.png',
-    hoverImage: '/assets/asset15.png',
+    bgImage: '/assets/asset13.webp',
+    hoverImage: '/assets/asset15.webp',
   },
 ];
 
@@ -98,7 +98,7 @@ function ServiceCard({ service, position, isTransitioning }: ServiceCardProps) {
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative mx-auto grid h-auto min-h-[504px] w-[calc(100%-2rem)] max-w-[1200px] grid-cols-[minmax(0,1fr)_minmax(0,582px)] gap-4 overflow-hidden bg-white p-6 shadow-sm transition-all duration-500 cursor-pointer"
+        className="group relative mx-auto grid h-auto min-h-126 w-[calc(100%-2rem)] max-w-300 grid-cols-[minmax(0,1fr)_minmax(0,582px)] gap-4 overflow-hidden bg-white p-6 shadow-sm transition-all duration-500 cursor-pointer"
         style={{
           transform,
           zIndex,
@@ -294,7 +294,7 @@ export default function ServiceHoverCard() {
 
       {/* ── DESKTOP: 3D carousel (hidden below lg) ──────────────── */}
       <div className="hidden xl:block">
-        <div className="relative mx-auto h-[620px] w-full overflow-hidden">
+        <div className="relative mx-auto h-155 w-full overflow-hidden">
           {carouselServices.map((service, index) => {
             const position = index - activeIndex;
             if (position < -2 || position > 2) return null;

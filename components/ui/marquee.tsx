@@ -8,12 +8,12 @@ interface LogoItem {
 }
 
 const logos: LogoItem[] = [
-  { name: 'Boltshift', src: '/assets/asset29.png' },
-  { name: 'Capsule', src: '/assets/asset26.png' },
-  { name: 'Codecraft', src: '/assets/asset24.png' },
-  { name: 'Euphoria', src: '/assets/asset25.png' },
-  { name: 'Frequencii', src: '/assets/asset28.png' },
-  { name: 'AlphaWave', src: '/assets/asset27.png' },
+  { name: 'Boltshift', src: '/assets/asset29.webp' },
+  { name: 'Capsule', src: '/assets/asset26.webp' },
+  { name: 'Codecraft', src: '/assets/asset24.webp' },
+  { name: 'Euphoria', src: '/assets/asset25.webp' },
+  { name: 'Frequencii', src: '/assets/asset28.webp' },
+  { name: 'AlphaWave', src: '/assets/asset27.webp' },
 ];
 
 export default function InfiniteLogoTicker() {

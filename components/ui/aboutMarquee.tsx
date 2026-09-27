@@ -8,13 +8,13 @@ interface LogoItem {
 }
 
 const logos: LogoItem[] = [
-  { name: 'Logo1', src: '/assets/asset33.png' },
-  { name: 'Logo2', src: '/assets/asset35.png' },
-  { name: 'Logo3', src: '/assets/asset36.png' },
-  { name: 'Logo4', src: '/assets/asset37.png' },
-  { name: 'Logo5', src: '/assets/asset38.png' },
-  { name: 'Logo6', src: '/assets/asset39.png' },
-  { name: 'Logo7', src: '/assets/asset40.png' },
+  { name: 'Logo1', src: '/assets/asset33.webp' },
+  { name: 'Logo2', src: '/assets/asset35.webp' },
+  { name: 'Logo3', src: '/assets/asset36.webp' },
+  { name: 'Logo4', src: '/assets/asset37.webp' },
+  { name: 'Logo5', src: '/assets/asset38.webp' },
+  { name: 'Logo6', src: '/assets/asset39.webp' },
+  { name: 'Logo7', src: '/assets/asset40.webp' },
 ];
 
 export default function AboutMarquee() {

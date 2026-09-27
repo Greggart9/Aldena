@@ -49,7 +49,7 @@ export default function LandingPage() {
         <main className="relative h-fit overflow-hidden"> 
             
             <div ref={backgroundRef} className="absolute left-0 top-0 z-0 h-screen md:h-[calc(100vh+180px)] w-screen image-wrap">
-                <Image src="/assets/asset2.png"
+                <Image src="/assets/asset2.webp"
                 alt="asset2" 
                 width={1920}
                 height={1080}
@@ -65,15 +65,26 @@ export default function LandingPage() {
             <section ref={heroRef} className="relative z-10 h-screen min-h-screen justify-between flex flex-col pb-6 px-5">  
 
                  {/* TOP - Title always at top */}
-                <div className="flex justify-center pt-20 md:pt-25 lg:pt-30">
-                <span className="text-[clamp(2.5rem,14vw,16rem)] font-bold text-white font-baskervville leading-none">Aldena Studio</span>
+                <div className="flex flex-col justify-center  pt-20 md:pt-25 lg:pt-30">
+                <span className="text-[clamp(2rem,14vw,16rem)] font-bold text-center text-white font-baskervville leading-none">Aldena Studio</span>
+                <div className="block sm:hidden order-1 sm:order-1 mt-10">
+                        <div className="">
+                            <div className="mt-2 lg:mt-4 uppercase text-xs/4 md:text-sm/6 font-bold text-white/80">
+                                <span className=" block">Designed to endure.</span>
+                                <span className=" block">Written to resonate.</span>
+                                <span className=" block">Considered in every detail.</span>
+                            </div>
+                            <span className="text-[clamp(2rem,6vw,4.5rem)] text-white tracking-tighter font-baskervville">Creative Agency</span>
+                        </div>
+                        
+                    </div>
                 </div>
 
                  {/* BOTTOM - Creative Agency always at bottom */}
                  <RevealOnScroll>
                 <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end w-full">
                     {/* LEFT */}
-                    <div className="order-1 sm:order-1">
+                    <div className="hidden sm:block order-1 sm:order-1">
                         <div className="">
                             <span className="text-[clamp(2rem,6vw,4.5rem)] text-white tracking-tighter font-baskervville">Creative Agency</span>
                             <div className="mt-2 lg:mt-4 uppercase text-xs/4 md:text-sm/6 font-bold text-white/80">
@@ -109,7 +120,7 @@ export default function LandingPage() {
                         muted
                         loop
                         playsInline
-                        poster="/assets/asset5.jpg"
+                        poster="/assets/asset5.webp"
                     >
                         <source src="/assets/v_asset1.mp4" type="video/mp4" />
                     </video>
@@ -142,7 +153,7 @@ export default function LandingPage() {
                         <RevealOnScroll>
                         <span className="flex pt-10 lg:pt-15 items-center gap-4">
                             <Image
-                            src="/assets/asset02.png"
+                            src="/assets/asset02.webp"
                             alt="arrow"
                             width={96}
                             height={96}
@@ -178,7 +189,7 @@ export default function LandingPage() {
 
             {/* SIXTH SECTION */}
             <div className="">
-                <FAQSection imageSrc="/assets/asset19.png" imageAlt="Workspace" contactHref="#contact" />
+                <FAQSection imageSrc="/assets/asset19.webp" imageAlt="Workspace" contactHref="#contact" />
             </div>
              
              <div>

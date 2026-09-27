@@ -54,19 +54,19 @@ const Footer = () => {
             
             {/* Navigation Links */}
             <div className="flex flex-col gap-2">
-              <Link href="/home"><TestSwap text="Home" /></Link>
+              <Link href="/"><TestSwap text="Home" /></Link>
               <Link href="/about"><TestSwap text="About" /></Link>
               <Link href="/projects"><TestSwap text="Projects" /></Link>
               <Link href="/contact"><TestSwap text="Contact" /></Link>
-              <Link href="/blog"><TestSwap text="Blog" /></Link>
+              <Link href="/"><TestSwap text="Blog" /></Link>
             </div>
 
             {/* Social Links */}
             <div className="flex flex-col gap-2">
-              <a href="/instagram" target="_blank"><TestSwap text="Instagram" /></a>
-              <a href="/linkedin" target="_blank"><TestSwap text="LinkedIn" /></a>
-              <a href="/twitter" target="_blank"><TestSwap text="X (Twitter)" /></a>
-              <a href="/dribbble" target="_blank"><TestSwap text="Dribbble" /></a>
+              <a href="#" target="_blank"><TestSwap text="Instagram" /></a>
+              <a href="https://www.linkedin.com/in/oluwadamilaree/" target="_blank"><TestSwap text="LinkedIn" /></a>
+              <a href="https://x.com/Oluwad_amilare" target="_blank"><TestSwap text="X (Twitter)" /></a>
+              <a href="https://contra.com/oluwadamilare_ogundare_evytuaxa/work?r=oluwadamilare_ogundare_evytuaxa" target="_blank"><TestSwap text="Contra" /></a>
             </div>
 
           </div>

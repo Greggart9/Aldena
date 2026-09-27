@@ -71,7 +71,7 @@ const BeforeFooter = () => {
               playsInline
               width={400}
               height={400}
-              poster="/assets/asset5.jpg"
+              poster="/assets/asset5.webp"
               suppressHydrationWarning
               className="h-[390px] w-[390px] object-cover object-center md:h-[400px] md:w-[400px]"
             />

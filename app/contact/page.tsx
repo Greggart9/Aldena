@@ -72,7 +72,7 @@ const ContactPage = () => {
       >
         <div className="absolute inset-0 z-0">
           <Image
-            src="/assets/asset52.png"
+            src="/assets/asset52.webp"
             alt="Hero Image"
             fill
             sizes="100vw"
@@ -260,7 +260,7 @@ const ContactPage = () => {
           className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]"
         >
           <Image
-            src="/assets/asset54.png"
+            src="/assets/asset54.webp"
             alt="The Aldena studio team working together"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
@@ -281,7 +281,7 @@ const ContactPage = () => {
           className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]"
         >
           <Image
-            src="/assets/asset53.png"
+            src="/assets/asset53.webp"
             alt="The Aldena studio office"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"

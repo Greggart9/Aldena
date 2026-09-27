@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: 'Aldena Studio',
     images: [
       {
-        url: '/assets/asset51.png',
+        url: '/assets/asset51.webp',
         width: 1200,
         height: 630,
         alt: 'Aldena — Editorial Creative Agency & Digital Brand Showcase',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: 'Aldena — Editorial Creative Agency & Digital Brand Showcase',
     description:
       'Aldena is an editorial-grade creative agency and digital design studio crafting timeless visual identities, digital products, and motion-driven web experiences.',
-    images: ['/assets/asset51.png'],
+    images: ['/assets/asset51.webp'],
   },
   icons: {
     icon: '/favicon.ico',

@@ -78,7 +78,7 @@ body {
 .grain {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/asset0.png");
+  background-image: url("/assets/asset0.webp");
   background-repeat: repeat;      /* tiles it since it's just 256x256 */
   background-size: 256px 256px;   /* keep it 1:1 so it doesn't stretch/blur */
   opacity: 0.34;                    /* tune this — 0.08–0.2 is typical */

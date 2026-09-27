@@ -51,7 +51,7 @@ const AboutPage = () => {
           className="relative h-[40vh] md:h-[60vh] xl:h-[82vh] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <Image
-                src="/assets/asset45.png"
+                src="/assets/asset45.webp"
                 alt="Hero Image"
                 fill
                 sizes="100vw"
@@ -76,11 +76,11 @@ const AboutPage = () => {
               {/* Overlapping Avatars */}
               <div className="flex items-center">
                 {[
-                  "/assets/asset32.jpeg",
-                  "/assets/asset31.png",
-                  "/assets/asset34.jpeg",
-                  "/assets/asset44.png",
-                  "/assets/asset43.png",
+                  "/assets/asset32.webp",
+                  "/assets/asset31.webp",
+                  "/assets/asset34.webp",
+                  "/assets/asset44.webp",
+                  "/assets/asset43.webp",
                 ].map((src, i) => (
                   <div
                     key={i}
@@ -140,7 +140,7 @@ const AboutPage = () => {
             {/* IMAGE */}
             <div className="relative h-[250px] md:h-[400px] lg:h-[751px] w-full mt-16 md:mt-25">
                 <Image
-                    src="/assets/asset41.jpg" 
+                    src="/assets/asset41.webp" 
                     alt="Typography focus image"
                     fill
                     className="object-cover object-center brightness-110 contrast-85"

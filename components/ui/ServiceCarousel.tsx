@@ -45,11 +45,11 @@ export default function ServiceCarousel() {
   const totalNumber = String(services.length).padStart(2, '0');
 
   return (
-    <div className="w-full sm:w-[360px] bg-[#111111]/90 backdrop-blur-xl p-4 flex flex-col gap-6">
+    <div className="w-full sm:w-90 bg-[#111111]/90 backdrop-blur-xl p-4 flex flex-col gap-6">
       
       <div className="space-y-2">
         {/* Progress Bar Track */}
-        <div className="h-[2px] w-full bg-white/20 relative overflow-hidden">
+        <div className="h-0.5 w-full bg-white/20 relative overflow-hidden">
           {/* Animated Progress Fill */}
           <motion.div
             className="absolute top-0 left-0 h-full bg-white"
@@ -84,7 +84,7 @@ export default function ServiceCarousel() {
       </div>
 
       {/* BOTTOM CONTENT: Animated Text */}
-      <div className="h-[80px] relative"> 
+      <div className="h-20 relative"> 
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}

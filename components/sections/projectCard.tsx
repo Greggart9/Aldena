@@ -25,8 +25,8 @@ export interface ProjectCardProps {
 
 const projects: ProjectCardProps[] = [
   {
-    backgroundImage: '/assets/asset03.png',
-    image: '/assets/asset01.png',
+    backgroundImage: '/assets/asset03.webp',
+    image: '/assets/asset01.webp',
     href: '/projects/aster-bloom',
     title: 'Aster Bloom',
     scrollingText: 'Aster Bloom',
@@ -34,8 +34,8 @@ const projects: ProjectCardProps[] = [
     year: 2024,
   },
   {
-    backgroundImage: '/assets/asset04.png',
-    image: '/assets/asset06.png',
+    backgroundImage: '/assets/asset04.webp',
+    image: '/assets/asset06.webp',
     href: '/projects/nova-grid',
     title: 'Nova Grid',
     scrollingText: 'Nova Grid',
@@ -43,8 +43,8 @@ const projects: ProjectCardProps[] = [
     year: 2024,
   },
   {
-    backgroundImage: '/assets/asset05.png',
-    image: '/assets/asset07.png',
+    backgroundImage: '/assets/asset05.webp',
+    image: '/assets/asset07.webp',
     href: '/projects/marrow-coffee',
     title: 'Marrow Coffee',
     scrollingText: 'Marrow Coffee',
@@ -52,8 +52,8 @@ const projects: ProjectCardProps[] = [
     year: 2025,
   },
   {
-    backgroundImage: '/assets/asset48.png',
-    image: '/assets/asset46.png',
+    backgroundImage: '/assets/asset48.webp',
+    image: '/assets/asset46.webp',
     href: '/projects/fern-field',
     title: 'Fern Field',
     scrollingText: 'Fern Field',
@@ -61,8 +61,8 @@ const projects: ProjectCardProps[] = [
     year: 2024,
   },
   {
-    backgroundImage: '/assets/asset50.png',
-    image: '/assets/asset47.png',
+    backgroundImage: '/assets/asset50.webp',
+    image: '/assets/asset47.webp',
     href: '/projects/halden-press',
     title: 'Halden Press',
     scrollingText: 'Halden Press',
@@ -70,8 +70,8 @@ const projects: ProjectCardProps[] = [
     year: 2025,
   },
   {
-    backgroundImage: '/assets/asset49.png',
-    image: '/assets/asset51.png',
+    backgroundImage: '/assets/asset49.webp',
+    image: '/assets/asset51.webp',
     href: '/projects/ostara-wine',
     title: 'Ostara Wine',
     scrollingText: 'Ostara Wine',

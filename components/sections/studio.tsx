@@ -119,7 +119,7 @@ export default function StudioSection() {
             {/* Image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               <Image
-                src="/assets/asset20.png"
+                src="/assets/asset20.webp"
                 alt="The art of white space"
                 fill
                 sizes="100vw"
@@ -158,7 +158,7 @@ export default function StudioSection() {
             {/* Image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               <Image
-                src="/assets/asset21.png"
+                src="/assets/asset21.webp"
                 alt="Building a brand voice"
                 fill
                 sizes="100vw"
@@ -198,7 +198,7 @@ export default function StudioSection() {
             {/* Image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               <Image
-                src="/assets/asset22.png"
+                src="/assets/asset22.webp"
                 alt="Designing for performance"
                 fill
                 sizes="100vw"

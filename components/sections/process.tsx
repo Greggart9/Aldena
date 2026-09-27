@@ -93,13 +93,13 @@ export default function Process() {
 
 
   return (
-    <section className="relative  h-fit pt-24 pb-10 bg-black overflow-hidden py-24 px-5 sm:px-8 md:px-[40px]">
+    <section className="relative  h-fit pt-24 pb-10 bg-black overflow-hidden py-24 px-5 sm:px-8 md:px-10">
 
         <div className="w-full flex flex-col gap-10">
 
             {/* TOP */}
-            <div className="ml-0 md:ml-[120px] lg:ml-[220px] ">
-                <DropTextOnScroll as='h1' className="font-sans text-[clamp(2rem,5vw,62px)] font-semibold tracking-tight text-white leading-tight max-w-full lg:w-[600px]">
+            <div className="ml-0 md:ml-30 lg:ml-55 ">
+                <DropTextOnScroll as='h1' className="font-sans text-[clamp(2rem,5vw,62px)] font-semibold tracking-tight text-white leading-tight max-w-full lg:w-150">
                         <span className="block">A refined process</span> built on clarity.
                 </DropTextOnScroll>
             </div>  
@@ -132,8 +132,8 @@ export default function Process() {
                                 </div>
 
                                 {/* Title & Smoothly Expanding Description */}
-                                <div className="col-span-8 md:col-span-9 md:pl-[60px] lg:pl-[100px]">
-                                <h3 className={`font-mono text-xl sm:text-2xl md:text-[30px] font-bold leading-tight md:leading-[39px] tracking-tight transition-colors duration-300 ${
+                                <div className="col-span-8 md:col-span-9 md:pl-15 lg:pl-25">
+                                <h3 className={`font-mono text-xl sm:text-2xl md:text-[30px] font-bold leading-tight md:leading-9.75 tracking-tight transition-colors duration-300 ${
                                     isOpen ? 'text-white' : 'text-white/30 group-hover:text-white'
                                 }`}>
                                     {item.title}
@@ -172,7 +172,7 @@ export default function Process() {
                 <InfiniteLogoTicker />
             </div>
 
-            <div>
+            <div className="hidden lg:block">
                 <TestimonialStack />
             </div>
         </div>
