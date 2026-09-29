@@ -66,7 +66,7 @@ export default function FloatingBottomNav() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             // Dark rectangular button matching the reference
-            className="flex h-11 w-14 flex-col items-center justify-center gap-1.5 bg-black transition-colors hover:bg-[#1a1a1a]"
+            className="flex h-11 w-14 flex-col items-center justify-center gap-1.5  bg-black/80 transition-colors hover:bg-[#1a1a1a]"
             aria-label="Toggle Navigation"
           >
             {/* Top Line */}

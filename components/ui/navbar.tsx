@@ -27,10 +27,11 @@ export default function FuturisticNavbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  // Close menu on route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   const navItems = [
     { name: "HOME", href: "/" },

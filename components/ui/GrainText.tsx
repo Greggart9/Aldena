@@ -27,9 +27,9 @@ export default function GrainText({ text, fontSize = 260, textColor = '#ffffff',
 
     let particlesArray: Particle[] = [];
     // Scale the scatter radius based on the font size so the effect remains proportional
-    let mouse = { x: -500, y: -500, radius: fontSize / 2.5 }; 
+    const mouse = { x: -500, y: -500, radius: fontSize / 2.5 }; 
 
-    const fontString = `bold ${fontSize}px "Times New Roman", Georgia, serif`;
+    const fontString = `${fontWeight} ${fontSize}px "Times New Roman", Georgia, serif`;
 
     // 1. INITIAL MAPPING
     ctx.fillStyle = textColor;
@@ -58,13 +58,13 @@ export default function GrainText({ text, fontSize = 260, textColor = '#ffffff',
       }
 
       update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
         
         if (distance < mouse.radius) {
-          let force = -mouse.radius / distance;
-          let angle = Math.atan2(dy, dx);
+          const force = -mouse.radius / distance;
+          const angle = Math.atan2(dy, dx);
           this.vx += force * Math.cos(angle);
           this.vy += force * Math.sin(angle);
         }
@@ -105,15 +105,15 @@ export default function GrainText({ text, fontSize = 260, textColor = '#ffffff',
       let isActivelyDisturbing = false; 
 
       for (let i = 0; i < particlesArray.length; i++) {
-        let p = particlesArray[i];
+        const p = particlesArray[i];
         p.update();
         
         if (Math.abs(p.x - p.originX) > 0.5 || Math.abs(p.y - p.originY) > 0.5 || Math.abs(p.vx) > 0.1) {
           allSettled = false;
         }
 
-        let dx = mouse.x - p.x;
-        let dy = mouse.y - p.y;
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
         if (Math.sqrt(dx * dx + dy * dy) < mouse.radius) {
           isActivelyDisturbing = true;
         }
@@ -157,7 +157,7 @@ export default function GrainText({ text, fontSize = 260, textColor = '#ffffff',
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [text, fontSize, textColor]); // Added new props to dependency array
+  }, [text, fontSize, textColor, fontWeight]);
 
   return (
     // Removed the red background and forced min-heights. It now behaves like a transparent text container.

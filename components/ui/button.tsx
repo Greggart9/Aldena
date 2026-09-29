@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import textRollEffect from './textRollEffect';
 
 interface ButtonProps {
   text?: string;

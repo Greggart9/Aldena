@@ -1,35 +1,33 @@
-import React from 'react'
-import DropTextOnScroll from '@/components/ui/DropTextOnScroll';
-import { ProjectSection } from '@/components/sections/projectCard';
+import React from "react";
+import DropTextOnScroll from "@/components/ui/DropTextOnScroll";
+import { ProjectSection } from "@/components/sections/projectCard";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-const AboutPage = () => {
+const ProjectsPage = () => {
   return (
-    <>
-      <main>
-
-         {/* HERO SECTION */}
-         <section className="relative  h-[50vh] md:h-[60vh] xl:h-[82vh]  flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 z-0"></div>
-
-            <div className="absolute inset-0 bg-black"></div>
-            
-            <div className="absolute bottom-10 sm:bottom-15 left-4 sm:left-7 z-10 text-white px-4">
-              <div>
-                <DropTextOnScroll as="h1" className='font-baskervville text-[clamp(3rem,10vw,100px)] font-bold -mb-6 sm:-mb-10'>Selected Works</DropTextOnScroll>
-                <p className='max-w-sm pt-8 sm:pt-10 text-sm sm:text-base'>A selection of work for brands with something to say, crafted to look sharp and read even sharper.</p>
-              </div>
-            </div>
-        </section>
-
-        {/* SECOND SECTION */}
-        <div>
-          <ProjectSection />
+    <main>
+      {/* Hero Section */}
+      <section className="relative h-[65vh] sm:h-[68vh] md:h-[72vh] xl:h-[85vh] flex items-end justify-start overflow-hidden">
+        <div className="absolute inset-0 bg-black" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        <div className="relative z-10 w-full px-5 sm:px-8 md:px-11 pb-10 sm:pb-14 md:pb-16 text-white">
+          <DropTextOnScroll as="h1" className="font-baskervville text-[clamp(2.8rem,9vw,100px)] font-bold leading-none tracking-tight mb-4 sm:mb-6">
+            Selected Works
+          </DropTextOnScroll>
+          <p className="max-w-xs sm:max-w-sm text-sm sm:text-base text-white/85 leading-relaxed">
+            A selection of work for brands with something to say, crafted to look sharp and read even sharper.
+          </p>
         </div>
+      </section>
 
-      </main>
-    </>
-  )
-}
+      {/* Projects Section */}
+      <div>
+        <ProjectSection />
+      </div>
+    </main>
+  );
+};
 
-export default AboutPage
+export default ProjectsPage;

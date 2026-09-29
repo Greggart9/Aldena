@@ -13,7 +13,8 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
   const tiltSetters = useRef<{
     rotateX: (value: number) => void;
     rotateY: (value: number) => void;
-    scale: (value: number) => void;
+    scaleX: (value: number) => void;
+    scaleY: (value: number) => void;
   } | null>(null);
 
   useEffect(() => {
@@ -35,7 +36,11 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
         duration: 0.35,
         ease: 'power3.out',
       }),
-      scale: gsap.quickTo(card, 'scale', {
+      scaleX: gsap.quickTo(card, 'scaleX', {
+        duration: 0.35,
+        ease: 'power3.out',
+      }),
+      scaleY: gsap.quickTo(card, 'scaleY', {
         duration: 0.35,
         ease: 'power3.out',
       }),
@@ -66,7 +71,8 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
 
     setters.rotateX(rotateX);
     setters.rotateY(rotateY);
-    setters.scale(1.02);
+    setters.scaleX(1.02);
+    setters.scaleY(1.02);
   };
 
   const handleMouseLeave = () => {
@@ -75,7 +81,8 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
 
     setters.rotateX(0);
     setters.rotateY(0);
-    setters.scale(1);
+    setters.scaleX(1);
+    setters.scaleY(1);
   };
 
   return (

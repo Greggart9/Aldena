@@ -4,7 +4,6 @@ import MouseEffects from "@/components/ui/MouseEffects";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Footer from "@/components/sections/footer";
 import PageTransition from "@/components/ui/PageTransition";
-import CustomCursor from "@/components/ui/CustomCursor"
 import FloatingBottomNav from "@/components/ui/FloatingBottomNav";
 import "./globals.css";
 
@@ -129,12 +128,10 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning className="w-full overflow-x-hidden">
         <SmoothScroll />
-        <CustomCursor />
-
         <FuturisticNavbar />
 
         {/* Global application width */}
-        <div className="mx-auto w-full max-w-[1920px] overflow-x-hidden">
+        <div className="mx-auto w-full  overflow-x-hidden">
           <PageTransition>{children}</PageTransition>
 
           <Footer />

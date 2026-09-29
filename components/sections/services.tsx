@@ -1,171 +1,79 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import RevealOnScroll from '../ui/RevealOnScroll';
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { servicesData, Service } from "@/data/servicesData";
+import RevealOnScroll from "../ui/RevealOnScroll";
 
-interface ServiceHoverCardProps {
-  category?: string;
-  title?: string;
-  description?: string;
-  price?: string;
-  serviceNumber?: string;
-  bgImage?: string;
-  hoverImage?: string;
-}
+/* ─── TYPES ─────────────────────────────────────────────────────── */
+interface CardProps { service: Service; position: number; isTransitioning: boolean; }
 
-type Service = Required<ServiceHoverCardProps>;
+/* ─── 3D DESKTOP CARD ───────────────────────────────────────────── */
+function DesktopCard({ service, position, isTransitioning }: CardProps) {
+  const [hovered, setHovered] = useState(false);
 
-const services: Service[] = [
-  {
-    category: 'WHAT WE OFFER',
-    title: 'Brand Identity',
-    description:
-      'A complete visual identity built from strategy up — logo suite, type and color systems, and a flexible design language. We deliver a brand that stays recognizable everywhere while giving each touchpoint room to breathe. Includes a full guidelines document so your team can apply it with confidence.',
-    price: '$6,000',
-    serviceNumber: 'SERVICE 01',
-    bgImage: '/assets/asset08.webp',
-    hoverImage: '/assets/asset10.webp',
-  },
-  {
-    category: 'WHAT WE OFFER',
-    title: 'Visual Design',
-    description:
-      'Design work that turns your brand into real, usable assets — packaging, web layouts, social templates, and marketing collateral. We keep every piece coherent so your brand feels considered at every scale. Ideal for studios who have an identity and need it brought to life.',
-    price: '$3,500',
-    serviceNumber: 'SERVICE 02',
-    bgImage: '/assets/asset09.webp',
-    hoverImage: '/assets/asset11.webp',
-  },
-  {
-    category: 'WHAT WE OFFER',
-    title: 'Content & Voice',
-    description:
-      'An editorial voice and content strategy that make your brand sound as intentional as it looks. We define tone guidelines, shape your key messaging, and set up a publishing rhythm your team can sustain. Great for brands with strong visuals but no words to match.',
-    price: '$2,500',
-    serviceNumber: 'SERVICE 03',
-    bgImage: '/assets/asset12.webp',
-    hoverImage: '/assets/asset14.webp',
-  },
-  {
-    category: 'WHAT WE OFFER',
-    title: 'Brand Refresh',
-    description:
-      "A focused evolution for brands that are close but not quite there — sharpening your identity, tightening the system, and modernizing without losing what people already recognize. We audit what's working, then refine the rest. A lower-commitment path to a brand that feels current.",
-    price: '$4,000',
-    serviceNumber: 'SERVICE 04',
-    bgImage: '/assets/asset13.webp',
-    hoverImage: '/assets/asset15.webp',
-  },
-];
-
-/* ─── DESKTOP CARD (3D carousel) ──────────────────────────────── */
-interface ServiceCardProps {
-  service: Service;
-  position: number;
-  isTransitioning: boolean;
-}
-
-function ServiceCard({ service, position, isTransitioning }: ServiceCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  let transform = '';
-  let zIndex = 10;
-  if (position === 0) {
-    transform = 'translateX(0) rotateX(10deg) rotateY(0deg) scale(1)';
-    zIndex = 30;
-  }
-  if (position === -1) {
-    transform = 'translateX(calc(-50vw - 32%)) rotateX(5deg) rotateY(30deg) scale(0.92)';
-    zIndex = 20;
-  }
-  if (position === 1) {
-    transform = 'translateX(calc(50vw + 32%)) rotateX(-5deg) rotateY(-30deg) scale(0.92)';
-    zIndex = 20;
-  }
-  if (position < -1) {
-    transform = 'translateX(calc(-100vw - 100%)) rotatex(0deg) scale(0.85)';
-    zIndex = 5;
-  }
-  if (position > 1) {
-    transform = 'translateX(calc(100vw + 100%)) rotatex(0deg) scale(0.85)';
-    zIndex = 5;
-  }
+  const transforms: Record<number, string> = {
+    0:  "translateX(0) rotateY(0deg) scale(1)",
+    "-1": "translateX(calc(-55vw - 5%)) rotateY(18deg) scale(0.88)",
+    1:  "translateX(calc(55vw + 5%)) rotateY(-18deg) scale(0.88)",
+  };
+  const transform =
+    transforms[position] ??
+    (position < -1
+      ? "translateX(calc(-120vw)) scale(0.75)"
+      : "translateX(calc(120vw)) scale(0.75)");
+  const zIndex = position === 0 ? 30 : Math.abs(position) === 1 ? 20 : 5;
+  const isActive = position === 0;
 
   return (
-    <div className="pointer-events-none absolute inset-0 flex h-full w-full items-center justify-center bg-[#f4f4f4]">
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
       <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="group relative mx-auto grid h-auto min-h-126 w-[calc(100%-2rem)] max-w-300 grid-cols-[minmax(0,1fr)_minmax(0,582px)] gap-4 overflow-hidden bg-white p-6 shadow-sm transition-all duration-500 cursor-pointer"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className="group relative flex w-[min(90vw,900px)] overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow duration-500 hover:shadow-2xl cursor-pointer"
         style={{
           transform,
           zIndex,
-          transition: isTransitioning
-            ? 'transform 1500ms cubic-bezier(0.22, 1, 0.36, 1)'
-            : 'none',
-          pointerEvents: position === 0 ? 'auto' : 'none',
+          minHeight: "420px",
+          transition: isTransitioning ? "transform 1400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s" : "none",
+          pointerEvents: isActive ? "auto" : "none",
+          opacity: Math.abs(position) > 1 ? 0 : Math.abs(position) === 1 ? 0.6 : 1,
         }}
       >
-        <div className="z-10 flex min-w-0 flex-col justify-between pr-8">
+        {/* Left: Text content */}
+        <div className="flex flex-1 flex-col justify-between p-8 lg:p-10">
           <div>
-            <span className="font-mono text-xs uppercase font-bold tracking-wide text-zinc-400 block mb-3">
-              {service.category}
-            </span>
-            <h3 className="font-mono text-5xl font-bold text-zinc-900 tracking-tight mb-6">
-              {service.title}
-            </h3>
-            <RevealOnScroll>
-              <p className="font-sans text-base font-medium text-zinc-600 leading-[1.2rem] max-w-lg">
-                {service.description}
-              </p>
-            </RevealOnScroll>
-          </div>
-          <RevealOnScroll>
-            <div>
-              <span className="font-mono text-xs uppercase font-bold tracking-wide text-zinc-400 block mb-1">
-                STARTING AT
-              </span>
-              <div className="font-mono text-4xl font-bold text-zinc-900 tracking-tight">
-                {service.price}
-              </div>
-            </div>
-          </RevealOnScroll>
-        </div>
-
-        <div className="relative h-full min-w-0 overflow-hidden">
-          <div className="absolute inset-0 transition-all duration-500">
-            <Image
-              src={service.bgImage}
-              alt={service.title}
-              fill
-              sizes="582px"
-              className={`object-cover transition-all ease-in-out duration-1200 brightness-100 contrast-75 ${
-                isHovered ? 'blur-[2px] scale-105' : 'blur-0 scale-100'
-              }`}
-            />
-            <div className="absolute inset-0 grain bg-black/20" />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-500 z-10" />
-          </div>
-          <div className="absolute top-4 right-4 z-20">
-            <span className="font-mono text-xs tracking-widest text-white uppercase font-bold">
+            <span className="mb-3 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
               {service.serviceNumber}
             </span>
+            <h3 className="mb-5 font-mono text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900">
+              {service.title}
+            </h3>
+            <p className="max-w-sm font-sans text-sm font-medium leading-relaxed text-zinc-500">
+              {service.description}
+            </p>
           </div>
-          <div
-            className={`absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-all duration-1000 ease-in-out ${
-              isHovered ? 'opacity-100 scale-80' : 'opacity-0 scale-100'
-            }`}
-          >
-            <div className="relative w-[60%] h-[60%] overflow-hidden">
-              <Image
-                src={service.hoverImage}
-                alt="Detailed View"
-                fill
-                sizes="350px"
-                className="object-cover"
-              />
+          <div className="mt-8 border-t border-zinc-100 pt-6">
+            <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Starting at</span>
+            <span className="font-mono text-3xl font-bold text-zinc-900">{service.price}</span>
+          </div>
+        </div>
+
+        {/* Right: Image panel */}
+        <div className="relative hidden w-[42%] flex-none overflow-hidden md:block">
+          <Image
+            src={service.bgImage}
+            alt={service.title}
+            fill
+            sizes="380px"
+            className={`object-cover transition-all duration-700 ease-in-out ${hovered ? "scale-105 brightness-75" : "scale-100 brightness-90"}`}
+          />
+          <div className="absolute inset-0 grain bg-black/10" />
+          {/* Hover overlay image */}
+          <div className={`absolute inset-0 z-10 flex items-center justify-center transition-all duration-700 ${hovered ? "opacity-100" : "opacity-0"}`}>
+            <div className="relative h-[55%] w-[55%] overflow-hidden rounded-lg shadow-xl">
+              <Image src={service.hoverImage} alt="Detail" fill sizes="200px" className="object-cover" />
             </div>
           </div>
         </div>
@@ -174,44 +82,25 @@ function ServiceCard({ service, position, isTransitioning }: ServiceCardProps) {
   );
 }
 
-/* ─── MOBILE / TABLET CARD (stacked list) ─────────────────────── */
-function MobileServiceCard({ service }: { service: Service }) {
+/* ─── MOBILE SWIPE CARD ─────────────────────────────────────────── */
+function MobileCard({ service }: { service: Service }) {
   return (
     <RevealOnScroll>
-      <div className="bg-white overflow-hidden shadow-sm">
-        {/* Image */}
-        <div className="relative h-52 sm:h-80 md:h-96 w-full overflow-hidden">
-          <Image
-            src={service.bgImage}
-            alt={service.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 768px"
-            className="object-cover brightness-100 contrast-75"
-          />
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+        <div className="relative h-52 sm:h-64 w-full overflow-hidden">
+          <Image src={service.bgImage} alt={service.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover brightness-90 contrast-75" />
           <div className="absolute inset-0 grain bg-black/10" />
-          <span className="absolute top-4 right-4 font-mono text-[10px] tracking-widest text-white uppercase font-bold">
+          <span className="absolute right-4 top-4 font-mono text-[10px] font-bold uppercase tracking-widest text-white">
             {service.serviceNumber}
           </span>
         </div>
-
-        {/* Content */}
-        <div className="p-5 flex flex-col gap-3">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-zinc-400">
-            {service.category}
-          </span>
-          <h3 className="font-mono text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight leading-tight">
-            {service.title}
-          </h3>
-          <p className="font-sans text-sm font-medium text-zinc-500 leading-relaxed">
-            {service.description}
-          </p>
-          <div className="pt-3 border-t border-zinc-100">
-            <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-zinc-400 block mb-1">
-              STARTING AT
-            </span>
-            <span className="font-mono text-2xl font-bold text-zinc-900">
-              {service.price}
-            </span>
+        <div className="flex flex-col gap-2 p-5">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-400">{service.category}</span>
+          <h3 className="font-mono text-2xl font-bold tracking-tight text-zinc-900">{service.title}</h3>
+          <p className="font-sans text-sm font-medium leading-relaxed text-zinc-500">{service.description}</p>
+          <div className="mt-2 border-zinc-100 pt-3">
+            <span className="mb-0.5 block font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-400">Starting at</span>
+            <span className="font-mono text-2xl font-bold text-zinc-900">{service.price}</span>
           </div>
         </div>
       </div>
@@ -219,117 +108,153 @@ function MobileServiceCard({ service }: { service: Service }) {
   );
 }
 
-/* ─── MAIN EXPORT ─────────────────────────────────────────────── */
+/* ─── MAIN EXPORT ────────────────────────────────────────────────── */
 export default function ServiceHoverCard() {
-  const total = services.length;
-  const carouselServices = [...services, ...services, ...services];
-  const middleStart = total;
+  const total = servicesData.length;
+  const tripled = [...servicesData, ...servicesData, ...servicesData];
 
-  const [activeIndex, setActiveIndex] = useState(middleStart);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const [isLocked, setIsLocked] = useState(false);
-  const unlockTimer = useRef<NodeJS.Timeout | null>(null);
+  const [active, setActive] = useState(total);   // Start in the middle set
+  const [animating, setAnimating] = useState(true);
+  const [locked, setLocked] = useState(false);
+  const [autoplay, setAutoplay] = useState(true);
+  const lockTimer = useRef<NodeJS.Timeout | null>(null);
+  const autoTimer = useRef<NodeJS.Timeout | null>(null);
+  const touchStart = useRef<number | null>(null);
 
-  const handleNext = () => {
-    if (isLocked) return;
-    setIsLocked(true);
-    setIsTransitioning(true);
-    setActiveIndex((c) => c + 1);
-    unlockTimer.current = setTimeout(() => setIsLocked(false), 1550);
-  };
+  /* Carousel navigation */
+  const go = useCallback((dir: 1 | -1) => {
+    if (locked) return;
+    setLocked(true);
+    setAnimating(true);
+    setActive((c) => c + dir);
+    lockTimer.current = setTimeout(() => setLocked(false), 1500);
+  }, [locked]);
 
-  const handlePrevious = () => {
-    if (isLocked) return;
-    setIsLocked(true);
-    setIsTransitioning(true);
-    setActiveIndex((c) => c - 1);
-    unlockTimer.current = setTimeout(() => setIsLocked(false), 1550);
-  };
-
+  /* Infinite loop seam jump */
   useEffect(() => {
-    if (activeIndex >= total * 2) {
+    if (active >= total * 2) {
       const t = setTimeout(() => {
-        setIsTransitioning(false);
-        setActiveIndex(total);
-        requestAnimationFrame(() => requestAnimationFrame(() => setIsTransitioning(true)));
-      }, 1500);
+        setAnimating(false);
+        setActive(total);
+        requestAnimationFrame(() => requestAnimationFrame(() => setAnimating(true)));
+      }, 1450);
       return () => clearTimeout(t);
     }
-    if (activeIndex < total) {
+    if (active < total) {
       const t = setTimeout(() => {
-        setIsTransitioning(false);
-        setActiveIndex(total * 2 - 1);
-        requestAnimationFrame(() => requestAnimationFrame(() => setIsTransitioning(true)));
-      }, 1500);
+        setAnimating(false);
+        setActive(total * 2 - 1);
+        requestAnimationFrame(() => requestAnimationFrame(() => setAnimating(true)));
+      }, 1450);
       return () => clearTimeout(t);
     }
-  }, [activeIndex, total]);
+  }, [active, total]);
 
+  /* Autoplay */
   useEffect(() => {
-    return () => {
-      if (unlockTimer.current) clearTimeout(unlockTimer.current);
-    };
+    if (!autoplay) return;
+    autoTimer.current = setInterval(() => go(1), 5000);
+    return () => { if (autoTimer.current) clearInterval(autoTimer.current); };
+  }, [autoplay, go]);
+
+  /* Cleanup */
+  useEffect(() => () => {
+    if (lockTimer.current) clearTimeout(lockTimer.current);
+    if (autoTimer.current) clearInterval(autoTimer.current);
   }, []);
 
+  /* Touch swipe */
+  const onTouchStart = (e: React.TouchEvent) => { touchStart.current = e.touches[0].clientX; };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const delta = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) go(delta > 0 ? 1 : -1);
+    touchStart.current = null;
+  };
+
+  const currentReal = ((active % total) + total) % total;
+
   return (
-    <section className="relative w-full bg-[#f4f4f4] py-12 md:py-20 xl:py-32">
+    <section
+      className="relative w-full bg-[#f4f4f4] py-16 sm:py-20 lg:py-28"
+      onMouseEnter={() => setAutoplay(false)}
+      onMouseLeave={() => setAutoplay(true)}
+    >
+      {/* Section header */}
+      <RevealOnScroll>
+        <div className="mb-10 px-5 sm:px-8 lg:px-12">
+          <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">What we offer</p>
+          <p className="max-w-md font-sans text-sm font-medium text-zinc-500">
+            A focused set of brand, web, and digital design services shaped to elevate your presence.
+          </p>
+        </div>
+      </RevealOnScroll>
 
-      {/* ── MOBILE / TABLET: stacked cards (hidden on lg+) ──────── */}
-      <div className="xl:hidden px-5 sm:px-8 flex flex-col gap-6">
-        <RevealOnScroll>
-          <div className="mb-2">
-            <p className="font-mono text-[10px] uppercase font-bold tracking-widest text-zinc-400 mb-2">
-              What we offer
-            </p>
-            <p className="font-sans text-sm text-zinc-500 font-medium max-w-sm">
-              A focused set of brand, web, and digital design services shaped to elevate your presence.
-            </p>
-          </div>
-        </RevealOnScroll>
-
-        {services.map((service) => (
-          <MobileServiceCard key={service.serviceNumber} service={service} />
-        ))}
+      {/* ── MOBILE: swipeable stack (up to lg) ── */}
+      <div
+        className="lg:hidden px-5 sm:px-8 flex flex-col gap-5"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {servicesData.map((s) => <MobileCard key={s.serviceNumber} service={s} />)}
       </div>
 
-      {/* ── DESKTOP: 3D carousel (hidden below lg) ──────────────── */}
-      <div className="hidden xl:block">
-        <div className="relative mx-auto h-155 w-full overflow-hidden">
-          {carouselServices.map((service, index) => {
-            const position = index - activeIndex;
-            if (position < -2 || position > 2) return null;
+      {/* ── DESKTOP: 3D carousel (lg+) ── */}
+      <div className="hidden lg:block">
+        <div className="relative mx-auto h-[520px] w-full overflow-hidden">
+          {tripled.map((service, index) => {
+            const position = index - active;
+            if (Math.abs(position) > 2) return null;
             return (
-              <ServiceCard
+              <DesktopCard
                 key={`${service.serviceNumber}-${index}`}
                 service={service}
                 position={position}
-                isTransitioning={isTransitioning}
+                isTransitioning={animating}
               />
             );
           })}
 
+          {/* Prev button */}
           <button
             type="button"
             aria-label="Previous service"
-            onClick={handlePrevious}
-            disabled={isLocked}
-            className="absolute left-[7%] top-1/2 z-50 -translate-y-1/2"
+            onClick={() => go(-1)}
+            disabled={locked}
+            className="absolute left-6 xl:left-10 top-1/2 z-50 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black text-white transition-all duration-300 hover:scale-110 hover:bg-zinc-800 disabled:opacity-40"
           >
-            <CircleArrowLeft size={34} />
+            <ArrowLeft size={18} />
           </button>
 
+          {/* Next button */}
           <button
             type="button"
             aria-label="Next service"
-            onClick={handleNext}
-            disabled={isLocked}
-            className="absolute right-[7%] top-1/2 z-50 -translate-y-1/2"
+            onClick={() => go(1)}
+            disabled={locked}
+            className="absolute right-6 xl:right-10 top-1/2 z-50 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-black text-white transition-all duration-300 hover:scale-110 hover:bg-zinc-800 disabled:opacity-40"
           >
-            <CircleArrowRight size={34} />
+            <ArrowRight size={18} />
           </button>
         </div>
-      </div>
 
+        {/* Dot indicators */}
+        <div className="mt-8 flex items-center justify-center gap-2">
+          {servicesData.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to service ${i + 1}`}
+              onClick={() => { setAnimating(true); setActive(total + i); }}
+              className={`h-1.5 rounded-full transition-all duration-400 ${
+                i === currentReal
+                  ? "w-6 bg-zinc-900"
+                  : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useLayoutEffect, useRef, useState, useId } from "react";
+import Link from "next/link";
 import { useAnimate, useReducedMotion, type Transition } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
@@ -387,21 +388,22 @@ function OriginkitBaseLiquidCarveButton(props: Props) {
         </span>
     );
 
-    const Wrapper = link ? "a" : "div";
+    const isInternalLink = Boolean(link && link.startsWith("/"));
+    const Wrapper: any = link ? (isInternalLink ? Link : "a") : "button";
     const wrapperProps = link
         ? {
               href: link,
               target: newTab ? "_blank" : undefined,
               rel: newTab ? "noopener noreferrer" : undefined,
           }
-        : { role: "button", tabIndex: 0 };
+        : { type: "button" };
 
     return (
         <Wrapper
             {...wrapperProps}
             {...rest}
             className={className}
-            ref={scope}
+            ref={scope as any}
             onPointerEnter={onEnter}
             onPointerMove={onMove}
             onPointerLeave={onLeave}
@@ -420,6 +422,8 @@ function OriginkitBaseLiquidCarveButton(props: Props) {
                 userSelect: "none",
                 boxSizing: "border-box",
                 overflow: "visible",
+                background: "transparent",
+                border: "none",
                 ...style,
             }}
         >
@@ -432,6 +436,7 @@ function OriginkitBaseLiquidCarveButton(props: Props) {
                     inset: 0,
                     overflow: "visible",
                     zIndex: 1,
+                    pointerEvents: "none",
                 }}
             >
                 <defs>

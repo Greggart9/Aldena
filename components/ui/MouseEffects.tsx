@@ -39,20 +39,22 @@ export default function MouseEffects({
     labelFont = { fontFamily: "Inter", fontSize: 60, fontWeight: 600 },
 }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
     const [rings, setRings] = useState<Effect[]>([]);
     const [bursts, setBursts] = useState<Effect[]>([]);
     const [particles, setParticles] = useState<Particle[]>([]);
     const [crosshairs, setCrosshairs] = useState<Effect[]>([]);
     const [wavies, setWavies] = useState<Effect[]>([]);
     const [snipers, setSnipers] = useState<Effect[]>([]);
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
-        // Don't run mouse effects on touch devices
+        setIsMounted(true);
         setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     }, []);
 
     useEffect(() => {
+        if (!isMounted) return;
         const handleClick = (e: MouseEvent) => {
             if (isTouchDevice) return;
             const container = containerRef.current;
@@ -92,10 +94,10 @@ export default function MouseEffects({
 
         document.addEventListener("click", handleClick);
         return () => document.removeEventListener("click", handleClick);
-    }, [interactionMode, effectSize, isTouchDevice]);
+    }, [isMounted, interactionMode, effectSize, isTouchDevice]);
 
-    // Don't render anything on touch devices
-    if (isTouchDevice) return null;
+    // Don't render anything on touch devices or before mounting
+    if (!isMounted || isTouchDevice) return null;
 
     const svgStyle = (x: number, y: number): CSSProperties => ({
         position: "absolute",
