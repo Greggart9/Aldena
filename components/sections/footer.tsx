@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import TestSwap from "@/components/ui/FlipButton";
+import TextSwap from "@/components/ui/FlipButton";
 import RevealOnScroll from "../ui/RevealOnScroll";
 
 const Footer = () => {
@@ -37,18 +37,17 @@ const Footer = () => {
           <div className="flex flex-col gap-6 md:gap-12">
             <div className="grid grid-cols-2 gap-12 w-full self-end max-w-md font-semibold text-[17px]">
               <div className="flex flex-col gap-2">
-                <Link href="/"><TestSwap text="Home" /></Link>
-                <Link href="/about"><TestSwap text="About" /></Link>
-                <Link href="/projects"><TestSwap text="Projects" /></Link>
-                <Link href="/contact"><TestSwap text="Contact" /></Link>
-                <Link href="/"><TestSwap text="Blog" /></Link>
+                <Link href="/"><TextSwap text="Home" /></Link>
+                <Link href="/about"><TextSwap text="About" /></Link>
+                <Link href="/projects"><TextSwap text="Projects" /></Link>
+                <Link href="/contact"><TextSwap text="Contact" /></Link>
               </div>
 
               <div className="flex flex-col gap-2">
-                <a href="#" target="_blank"><TestSwap text="Instagram" /></a>
-                <a href="https://www.linkedin.com/in/oluwadamilaree/" target="_blank"><TestSwap text="LinkedIn" /></a>
-                <a href="https://x.com/Oluwad_amilare" target="_blank"><TestSwap text="X (Twitter)" /></a>
-                <a href="https://contra.com/oluwadamilare_ogundare_evytuaxa/work?r=oluwadamilare_ogundare_evytuaxa" target="_blank"><TestSwap text="Contra" /></a>
+                <a href="#" target="_blank"><TextSwap text="Instagram" /></a>
+                <a href="https://www.linkedin.com/in/oluwadamilaree/" target="_blank"><TextSwap text="LinkedIn" /></a>
+                <a href="https://x.com/Oluwad_amilare" target="_blank"><TextSwap text="X (Twitter)" /></a>
+                <a href="https://contra.com/oluwadamilare_ogundare_evytuaxa/work?r=oluwadamilare_ogundare_evytuaxa" target="_blank"><TextSwap text="Contra" /></a>
               </div>
             </div>
 

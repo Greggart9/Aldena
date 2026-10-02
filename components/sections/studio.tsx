@@ -57,7 +57,7 @@ export default function StudioSection() {
           <article key={article.title} className="studio-card flex-1 flex flex-col gap-4 opacity-0">
             <div className="group relative w-full h-[300px] sm:h-[380px] md:h-[469px] overflow-hidden bg-gray-100 cursor-pointer">
               <div className="absolute inset-0 w-full h-full overflow-hidden">
-                <Image src={article.image} alt={article.title} fill sizes="100vw" className="card-image-inner object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                <Image src={article.image} alt={article.title} fill sizes="(max-width: 1024px) 100vw, 33vw" className="card-image-inner object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
               </div>
 
               <div className="absolute top-5 left-5 z-20 flex gap-2 text-white text-xs font-semibold tracking-wider drop-shadow-md">
@@ -70,7 +70,7 @@ export default function StudioSection() {
               <div className="absolute inset-0 z-10 grain" />
 
               <div className="absolute bottom-0 left-0 z-20 w-full p-6 translate-y-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-                <p className="max-w-[60%] text-white text-md font-medium leading-tight">{article.title}</p>
+                <p className="max-w-[60%] text-white text-base font-medium leading-tight">{article.title}</p>
               </div>
             </div>
 

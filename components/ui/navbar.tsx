@@ -61,7 +61,7 @@ export default function FuturisticNavbar() {
                 scroll={false}
                 className={`relative px-2 py-2 text-[11px] font-mono font-bold ${
                   isSlugPage ? "text-black" : "text-white"
-                } uppercase tracking-wider duration-300}`}
+                } uppercase tracking-wider duration-300`}
               >
                 <TextSwap text={item.name} hoverOn="parent" />
               </Link>

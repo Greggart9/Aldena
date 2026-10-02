@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { gsap } from "gsap";
+
+const emptySubscribe = () => () => {};
 
 type Effect = { id: string; x: number; y: number };
 type Particle = Effect & { angle: number; distance: number };
@@ -39,19 +41,18 @@ export default function MouseEffects({
     labelFont = { fontFamily: "Inter", fontSize: 60, fontWeight: 600 },
 }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isMounted, setIsMounted] = useState(false);
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+    const isTouchDevice = useSyncExternalStore(
+        emptySubscribe,
+        () => "ontouchstart" in window || navigator.maxTouchPoints > 0,
+        () => false
+    );
     const [rings, setRings] = useState<Effect[]>([]);
     const [bursts, setBursts] = useState<Effect[]>([]);
     const [particles, setParticles] = useState<Particle[]>([]);
     const [crosshairs, setCrosshairs] = useState<Effect[]>([]);
     const [wavies, setWavies] = useState<Effect[]>([]);
     const [snipers, setSnipers] = useState<Effect[]>([]);
-
-    useEffect(() => {
-        setIsMounted(true);
-        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    }, []);
 
     useEffect(() => {
         if (!isMounted) return;

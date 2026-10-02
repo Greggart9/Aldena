@@ -1,6 +1,4 @@
-'use client';
-
-import { use } from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -15,8 +13,45 @@ interface ProjectPageProps {
   }>;
 }
 
-export default function ProjectTemplatePage({ params }: ProjectPageProps) {
-  const { slug } = use(params);
+export function generateStaticParams() {
+  return Object.keys(projectsData).map((slug) => ({
+    slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projectsData[slug];
+  if (!project) {
+    return { title: "Project Not Found" };
+  }
+
+  return {
+    title: project.title,
+    description: project.subtitle,
+    openGraph: {
+      title: `${project.title} | Aldena Studio`,
+      description: project.subtitle,
+      images: [
+        {
+          url: project.heroImage,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Aldena Studio`,
+      description: project.subtitle,
+      images: [project.heroImage],
+    },
+  };
+}
+
+export default async function ProjectTemplatePage({ params }: ProjectPageProps) {
+  const { slug } = await params;
   const project = projectsData[slug];
 
   // 1. Calculate the next project dynamically before rendering
@@ -184,7 +219,7 @@ export default function ProjectTemplatePage({ params }: ProjectPageProps) {
             <div className="flex items-center justify-center bg-[#f4f4f4] w-full py-16 sm:py-24 px-6">
                 <div className="w-full max-w-[380px] text-center sm:text-left">
                   <RevealOnScroll><p className='text-4xl sm:text-6xl font-bold tracking-tighter'>Next Project.</p></RevealOnScroll>
-                  <RevealOnScroll><p className='text-sm sm:text-md font-medium text-gray-500 pt-3 sm:pt-5 leading-5 sm:leading-6'>Keep exploring—here’s another project from our studio, shaped by the same care and craft.</p></RevealOnScroll>
+                  <RevealOnScroll><p className='text-sm sm:text-base font-medium text-gray-500 pt-3 sm:pt-5 leading-5 sm:leading-6'>Keep exploring—here’s another project from our studio, shaped by the same care and craft.</p></RevealOnScroll>
                 </div>
             </div>
 

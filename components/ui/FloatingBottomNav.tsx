@@ -22,9 +22,8 @@ export default function FloatingBottomNav() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Works', href: '/projects' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Blog', href: '/blog' },
   ];
 
   return (

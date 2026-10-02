@@ -13,7 +13,7 @@ export default function Loading() {
         <div className="flex items-center gap-3">
           <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
           <span className="font-mono text-xs uppercase tracking-widest text-white font-semibold">
-              Hopefully this won't take forever :)
+              Hopefully this won&apos;t take forever :)
           </span>
         </div>
       </div>

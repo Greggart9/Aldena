@@ -141,7 +141,7 @@ export default function LandingPage() {
             <LiquidCarveButton
               variant="black"
               label="MORE ABOUT US"
-              link="/projects"
+              link="/about"
               newTab={false}
             />
           </div>
@@ -150,9 +150,9 @@ export default function LandingPage() {
           <div className="w-full lg:w-[62%] lg:max-w-[1050px]">
             <RevealOnScroll>
               <div className="flex flex-col text-[clamp(1.7rem,4.2vw,3.125rem)] font-semibold leading-[1.18] tracking-[-0.025em]">
-                <ScrollBlockText text="We're a brand and editorial studio for companies that would rather be understood than noticed. We build identities, publications,and content systems with the patience of print." />
+                <ScrollBlockText text="We're a brand and editorial studio for companies that would rather be understood than noticed. We build identities, publications, and content systems with the patience of print." />
                 <ScrollBlockText
-                  text="Fewer projects, closer attention, work that readsthe same on a billboard as it does on a business card."
+                  text="Fewer projects, closer attention, work that reads the same on a billboard as it does on a business card."
                   className="pt-10 lg:pt-15"
                 />
 
@@ -197,7 +197,7 @@ export default function LandingPage() {
         <FAQSection
           imageSrc="/assets/asset19.webp"
           imageAlt="Workspace"
-          contactHref="#contact"
+          contactHref="/contact"
         />
       </section>
 

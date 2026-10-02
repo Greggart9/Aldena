@@ -389,44 +389,35 @@ function OriginkitBaseLiquidCarveButton(props: Props) {
     );
 
     const isInternalLink = Boolean(link && link.startsWith("/"));
-    const Wrapper: any = link ? (isInternalLink ? Link : "a") : "button";
-    const wrapperProps = link
-        ? {
-              href: link,
-              target: newTab ? "_blank" : undefined,
-              rel: newTab ? "noopener noreferrer" : undefined,
-          }
-        : { type: "button" };
+    const commonProps = {
+        ...rest,
+        className,
+        onPointerEnter: onEnter,
+        onPointerMove: onMove,
+        onPointerLeave: onLeave,
+        "aria-label": label,
+        style: {
+            width: "fit-content", // strictly wraps its text content
+            minWidth: 1,
+            minHeight: 1,
+            position: "relative" as const,
+            display: "inline-flex" as const,
+            alignItems: "center" as const,
+            justifyContent: "center" as const,
+            padding,
+            cursor: "pointer" as const,
+            textDecoration: "none" as const,
+            userSelect: "none" as const,
+            boxSizing: "border-box" as const,
+            overflow: "visible" as const,
+            background: "transparent" as const,
+            border: "none",
+            ...style,
+        },
+    };
 
-    return (
-        <Wrapper
-            {...wrapperProps}
-            {...rest}
-            className={className}
-            ref={scope as any}
-            onPointerEnter={onEnter}
-            onPointerMove={onMove}
-            onPointerLeave={onLeave}
-            aria-label={label}
-            style={{
-                width: "fit-content", // strictly wraps its text content
-                minWidth: 1,
-                minHeight: 1,
-                position: "relative",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding,
-                cursor: "pointer",
-                textDecoration: "none",
-                userSelect: "none",
-                boxSizing: "border-box",
-                overflow: "visible",
-                background: "transparent",
-                border: "none",
-                ...style,
-            }}
-        >
+    const innerContent = (
+        <>
             <svg
                 aria-hidden
                 width="100%"
@@ -524,7 +515,42 @@ function OriginkitBaseLiquidCarveButton(props: Props) {
                 {iconEl}
                 {showText && <span>{label}</span>}
             </span>
-        </Wrapper>
+        </>
+    );
+
+    if (link) {
+        if (isInternalLink) {
+            return (
+                <Link
+                    href={link}
+                    ref={scope as React.Ref<HTMLAnchorElement>}
+                    {...commonProps}
+                >
+                    {innerContent}
+                </Link>
+            );
+        }
+        return (
+            <a
+                href={link}
+                target={newTab ? "_blank" : undefined}
+                rel={newTab ? "noopener noreferrer" : undefined}
+                ref={scope as React.Ref<HTMLAnchorElement>}
+                {...commonProps}
+            >
+                {innerContent}
+            </a>
+        );
+    }
+
+    return (
+        <button
+            type="button"
+            ref={scope as React.Ref<HTMLButtonElement>}
+            {...commonProps}
+        >
+            {innerContent}
+        </button>
     );
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -10,6 +10,8 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 import { projectsList } from "@/data/projectsData";
+
+const emptySubscribe = () => () => {};
 
 export interface ProjectCardProps {
   backgroundImage: string;
@@ -34,15 +36,14 @@ export default function EditorialProjectCard({
   const textRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false); // always false on SSR
+  const isTouchDevice = useSyncExternalStore(
+    emptySubscribe,
+    () => "ontouchstart" in window || navigator.maxTouchPoints > 0,
+    () => false
+  );
 
   const cursorX = useSpring(useMotionValue(0), { stiffness: 180, damping: 24, mass: 0.5 });
   const cursorY = useSpring(useMotionValue(0), { stiffness: 180, damping: 24, mass: 0.5 });
-
-  useEffect(() => {
-    // Detect touch after mount — avoids SSR/client mismatch
-    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -119,10 +120,10 @@ export default function EditorialProjectCard({
         {/* Card Details Footer */}
         <motion.div animate={isTouchDevice ? {} : { width: isHovered ? 1000 : 490 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className={`mt-4 flex items-end justify-between px-2 text-white ${isTouchDevice ? "w-full max-w-[600px]" : ""}`}>
           <div className="max-w-[60%]">
-            <h3 className="font-san-serif text-2xl font-bold tracking-tight text-white">{title}</h3>
-            <p className="font-san-serif text-sm text-white/80 mt-1 tracking-wide">{description}</p>
+            <h3 className="font-sans text-2xl font-bold tracking-tight text-white">{title}</h3>
+            <p className="font-sans text-sm text-white/80 mt-1 tracking-wide">{description}</p>
           </div>
-          <div className="self-start font-sans-serif text-sm tracking-wide text-white">{year}</div>
+          <div className="self-start font-sans text-sm tracking-wide text-white">{year}</div>
         </motion.div>
       </div>
     </section>

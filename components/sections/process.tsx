@@ -18,16 +18,18 @@ export default function Process() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const borders = section.querySelectorAll(".process-border");
-    borders.forEach((border) => {
-      gsap.fromTo(
-        border,
-        { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: border, start: "top 85%", toggleActions: "play none none none" } }
-      );
-    });
+    const ctx = gsap.context(() => {
+      const borders = section.querySelectorAll(".process-border");
+      borders.forEach((border) => {
+        gsap.fromTo(
+          border,
+          { scaleX: 0, transformOrigin: "left center" },
+          { scaleX: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: border, start: "top 85%", toggleActions: "play none none none" } }
+        );
+      });
+    }, section);
 
-    return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
+    return () => { ctx.revert(); };
   }, []);
 
   return (

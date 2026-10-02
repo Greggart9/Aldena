@@ -2,6 +2,7 @@
 
 import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
@@ -130,17 +131,17 @@ const ContactPage = () => {
 
       {/* Visual Showcase (Team & Office) */}
       <section className="grid grid-cols-1 gap-6 bg-white px-4 md:px-7 pb-30 md:grid-cols-2">
-        <a ref={teamRef} href="#team" className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]">
+        <Link ref={teamRef} href="/about#team" className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]">
           <Image src="/assets/asset54.webp" alt="The Aldena studio team working together" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-center" />
           <div className="grain" />
           <span className="parallax-text absolute inset-0 z-10 flex items-center justify-center font-serif text-2xl text-white md:text-3xl">The Team.</span>
-        </a>
+        </Link>
 
-        <a ref={officeRef} href="#office" className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]">
+        <Link ref={officeRef} href="/about" className="group relative block min-h-[420px] overflow-hidden md:min-h-[520px]">
           <Image src="/assets/asset53.webp" alt="The Aldena studio office" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-center" />
           <div className="grain" />
           <span className="parallax-text absolute inset-0 z-10 flex items-center justify-center font-serif text-2xl text-white md:text-3xl">The Office.</span>
-        </a>
+        </Link>
       </section>
     </main>
   );

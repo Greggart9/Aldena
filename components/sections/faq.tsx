@@ -17,7 +17,7 @@ const faqs = faqsData;
 export default function FAQSection({
   imageSrc = "/assets/faq-image.webp",
   imageAlt = "Workspace",
-  contactHref = "#contact",
+  contactHref = "/contact",
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 

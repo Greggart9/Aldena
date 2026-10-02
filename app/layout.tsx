@@ -12,6 +12,8 @@ import {
   Instrument_Serif,
   Playfair_Display,
   Baskervville,
+  Geist,
+  Geist_Mono,
 } from "next/font/google";
 
 export const metadata: Metadata = {
@@ -116,6 +118,18 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -124,7 +138,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${instrument.variable} ${playfair.variable} ${baskervville.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bodoni.variable} ${instrument.variable} ${playfair.variable} ${baskervville.variable}`}
     >
       <body suppressHydrationWarning className="w-full overflow-x-hidden">
         <SmoothScroll />

@@ -21,42 +21,43 @@ export default function TestimonialStack() {
 
     if (!container || !card1 || !card2) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'top top',
-        end: '+=150%', // Scroll distance for both cards to exit
-        pin: true,
-        scrub: true,
-      }
-    });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: 'top top',
+          end: '+=150%', // Scroll distance for both cards to exit
+          pin: true,
+          scrub: true,
+        }
+      });
 
-    // 1. First card exits by rotating to the right and sliding up/out
-    gsap.set([card1, card2], {
-      y: 0,
-      x: 0,
-      rotation: 0,
-      opacity: 1,
-    });
+      // 1. First card exits by rotating to the right and sliding up/out
+      gsap.set([card1, card2], {
+        y: 0,
+        x: 0,
+        rotation: 0,
+        opacity: 1,
+      });
 
-    tl.to(card1, {
-      yPercent: -120,
-      rotation: 10,
-      opacity: 1,
-      ease: 'power1.inOut',
-      duration: 0.5,
-    })
-      // 2. Second card exits by rotating to the left and sliding up/out, while third card stays anchored
-      .to(card2, {
-        yPercent: -110, rotation: -8,
+      tl.to(card1, {
+        yPercent: -120,
+        rotation: 10,
         opacity: 1,
         ease: 'power1.inOut',
         duration: 0.5,
-      }, '+=0.2');
+      })
+        // 2. Second card exits by rotating to the left and sliding up/out, while third card stays anchored
+        .to(card2, {
+          yPercent: -110, rotation: -8,
+          opacity: 1,
+          ease: 'power1.inOut',
+          duration: 0.5,
+        }, '+=0.2');
+    }, container);
 
     return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
+      ctx.revert();
     };
   }, []);
 

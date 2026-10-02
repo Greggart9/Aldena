@@ -18,26 +18,28 @@ export default function ScrollBlockText({ text, className = "" }: ScrollBlockTex
     const container = containerRef.current;
     if (!container) return;
 
-    const wordElements = container.querySelectorAll('.word');
+    const ctx = gsap.context(() => {
+      const wordElements = container.querySelectorAll('.word');
 
-    // Animate each word as it hits the viewport midpoint
-    gsap.fromTo(
-      wordElements,
-      { opacity: 0.3 },
-      {
-        opacity: 1,
-        stagger: 0.05, // Slight delay between words for a fluid feel
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 80%', // Starts when the text block enters lower viewport
-          end: 'top 40%',   // Reaches full opacity as it hits the upper-middle area
-          scrub: true,      // Smoothly binds animation to scrolling up and down
-        },
-      }
-    );
+      // Animate each word as it hits the viewport midpoint
+      gsap.fromTo(
+        wordElements,
+        { opacity: 0.3 },
+        {
+          opacity: 1,
+          stagger: 0.05, // Slight delay between words for a fluid feel
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 80%', // Starts when the text block enters lower viewport
+            end: 'top 40%',   // Reaches full opacity as it hits the upper-middle area
+            scrub: true,      // Smoothly binds animation to scrolling up and down
+          },
+        }
+      );
+    }, container);
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ctx.revert();
     };
   }, [text]);
 

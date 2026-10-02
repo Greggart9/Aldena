@@ -24,19 +24,15 @@ export default function TeamSection() {
         if (image) {
           gsap.fromTo(image, { scale: 1.3 }, { scale: 1, duration: 1.4, ease: "power3.out", clearProps: "transform", scrollTrigger: { trigger: card, start: "top 75%", toggleActions: "play none none none" } });
         }
-
-        const text = card.querySelectorAll<HTMLElement>(".team-copy");
-        if (text.length) {
-          gsap.fromTo(text, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 70%", toggleActions: "play none none none" } });
-        }
       });
+      ScrollTrigger.refresh();
     }, container);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full bg-white px-6 py-20 text-black md:px-10 md:py-28">
+    <section ref={containerRef} id="team" className="w-full bg-white px-6 py-20 text-black md:px-10 md:py-28">
       <div className="mx-auto max-w-[1680px]">
         {/* Section Header */}
         <header className="flex flex-col items-center text-center">
